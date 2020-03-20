@@ -1,4 +1,4 @@
-![](https://github.com/iluxa/TimeSwipe.py/workflows/Workflow/badge.svg) [![PyPI version](https://badge.fury.io/py/numpy.svg)](https://badge.fury.io/py/numpy)
+![](https://github.com/iluxa/TimeSwipe.py/workflows/Workflow/badge.svg) [![PyPI version](https://badge.fury.io/py/test-timeswipe.svg)](https://badge.fury.io/py/test-timeswipe)
 
 ## Install from binary wheels
 
