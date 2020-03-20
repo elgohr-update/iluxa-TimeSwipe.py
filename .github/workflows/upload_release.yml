@@ -56,10 +56,28 @@ jobs:
           name: arm64_38
           path: ./${{ steps.build_project.outputs.arm64_38 }}
 
+  build_src:
+    runs-on: ubuntu-latest
+    container: pandaofficial/timeswipe_py_arm64
+    name: Build arc
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build project
+        id: build_project
+        run: |
+          ./build.sh arc
+          echo ::set-output name=arm64_37::$(ls *.tar.gz)
+      - name: Save src
+        uses: actions/upload-artifact@v1
+        with:
+          name: src
+          path: ./${{ steps.build_project.outputs.src }}
+
   release:
     name: Create Github Release
     if: contains(github.ref, 'tags/v')
-    needs: [build_arm, build_arm64]
+    needs: [build_arm, build_arm64, build_src]
     runs-on: ubuntu-latest
     steps:
     - name: Create Release
@@ -88,6 +106,10 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: arm64_38
+    - name: Load src
+      uses: actions/download-artifact@v1
+      with:
+        name: src
 
     - name: Publish arm_37
       uses: csexton/release-asset-action@v2
@@ -111,6 +133,12 @@ jobs:
       uses: csexton/release-asset-action@v2
       with:
         pattern: "arm64_38/*"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        release-url: ${{ steps.create_release.outputs.upload_url }}
+    - name: Publish src
+      uses: csexton/release-asset-action@v2
+      with:
+        pattern: "src/*"
         github-token: ${{ secrets.GITHUB_TOKEN }}
         release-url: ${{ steps.create_release.outputs.upload_url }}
 
@@ -138,7 +166,10 @@ jobs:
         user: __token__
         password: ${{ secrets.PYPI_TOKEN }}
         packages_dir: arm64_38/
-
-
-
+    - name: Publish src to PyPI
+      uses: pypa/gh-action-pypi-publish@v1.1.0
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_TOKEN }}
+        packages_dir: src/
 
