@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: arm_38
-          path: ./${{ steps.build_project.outputs.arm_37 }}
+          path: ./${{ steps.build_project.outputs.arm_38 }}
 
   build_arm64:
     runs-on: ubuntu-latest
@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: arm64_38
-          path: ./${{ steps.build_project.outputs.arm64_37 }}
+          path: ./${{ steps.build_project.outputs.arm64_38 }}
 
   release:
     name: Create Github Release
