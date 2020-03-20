@@ -113,6 +113,7 @@ jobs:
         pattern: "arm64_38/*"
         github-token: ${{ secrets.GITHUB_TOKEN }}
         release-url: ${{ steps.create_release.outputs.upload_url }}
+    # aarch64 is not supported by PYPI
     - name: Publish arm_37 to PyPI
       uses: pypa/gh-action-pypi-publish@v1.1.0
       with:
@@ -125,18 +126,6 @@ jobs:
         user: __token__
         password: ${{ secrets.PYPI_TOKEN }}
         packages_dir: arm_38/
-    - name: Publish arm64_37 to PyPI
-      uses: pypa/gh-action-pypi-publish@v1.1.0
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_TOKEN }}
-        packages_dir: arm64_37/
-    - name: Publish arm64_38 to PyPI
-      uses: pypa/gh-action-pypi-publish@v1.1.0
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_TOKEN }}
-        packages_dir: arm64_38/
 
 
 
