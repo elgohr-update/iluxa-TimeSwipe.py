@@ -114,10 +114,10 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         release-url: ${{ steps.create_release.outputs.upload_url }}
     - name: Publish a Python distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.1.0
-        with:
-            user: __token__
-            password: ${{ secrets.PYPI_TOKEN }}
-            packages_dir: arm_37/
+      uses: pypa/gh-action-pypi-publish@v1.1.0
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_TOKEN }}
+        packages_dir: arm_37/
 
 
