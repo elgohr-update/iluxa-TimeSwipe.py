@@ -67,7 +67,7 @@ jobs:
         id: build_project
         run: |
           ./build.sh src
-          echo ::set-output name=arm64_37::$(ls *.tar.gz)
+          echo ::set-output name=src_wheel::$(ls *.tar.gz)
       - name: Save src
         uses: actions/upload-artifact@v1
         with:
