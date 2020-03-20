@@ -59,14 +59,14 @@ jobs:
   build_src:
     runs-on: ubuntu-latest
     container: pandaofficial/timeswipe_py_arm64
-    name: Build arc
+    name: Build src
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build project
         id: build_project
         run: |
-          ./build.sh arc
+          ./build.sh src
           echo ::set-output name=arm64_37::$(ls *.tar.gz)
       - name: Save src
         uses: actions/upload-artifact@v1
