@@ -27,7 +27,8 @@ file /usr/lib/libtimeswipe.so.0.0.8 && \
 OVERRIDE_INCLUDES=/usr/include/aarch64-linux-gnu/python3.8\ /usr/include/python3.8 OVERRIDE_LIBS=/usr/lib/libtimeswipe.a\ /usr/lib/libboost_python38.a python3.8 setup.py bdist_wheel --plat-name $plat_name --dist-dir /tmp/dist && python3.8 setup.py clean --all && \
 OVERRIDE_INCLUDES=/usr/include/aarch64-linux-gnu/python3.7\ /usr/include/python3.7 OVERRIDE_LIBS=/usr/lib/libtimeswipe.a\ /usr/lib/libboost_python37.a python3.7 setup.py bdist_wheel --plat-name $plat_name --dist-dir /tmp/dist && python3.7 setup.py clean --all && \
 if [ "$arch" == "arm64" ]; then
-    find $1 -iname '*.whl' -exec sh -c 'x="{}"; mv "$x" `echo $x | sed "s/timeswipe-/timeswipe-aarch64-/"`' \;
+    # rename to timeswipe-aarch64
+    find /tmp/dist -iname '*.whl' -exec sh -c 'x="{}"; mv "$x" `echo $x | sed "s/timeswipe-/timeswipe-aarch64-/"`' \;
 fi
 find /tmp/dist -iname "*.whl" -exec cp {} ${src_dir} \; && \
 dpkg -r timeswipe
