@@ -154,18 +154,7 @@ jobs:
         user: __token__
         password: ${{ secrets.PYPI_TOKEN }}
         packages_dir: arm_38/
-    - name: Publish arm64_37 to PyPI
-      uses: pypa/gh-action-pypi-publish@v1.1.0
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_TOKEN }}
-        packages_dir: arm64_37/
-    - name: Publish arm64_38 to PyPI
-      uses: pypa/gh-action-pypi-publish@v1.1.0
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_TOKEN }}
-        packages_dir: arm64_38/
+    #aarch64 not supported by pypi
     - name: Publish src to PyPI
       uses: pypa/gh-action-pypi-publish@v1.1.0
       with:
