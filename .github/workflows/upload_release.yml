@@ -110,7 +110,6 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: src_wheel
-
     - name: Publish arm_37
       uses: csexton/release-asset-action@v2
       with:
