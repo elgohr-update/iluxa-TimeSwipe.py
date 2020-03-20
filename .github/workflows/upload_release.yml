@@ -18,7 +18,7 @@ jobs:
       - name: Build project
         id: build_project
         run: |
-          /build.sh arm
+          ./build.sh arm
           echo ::set-output name=arm_37::$(ls *cp37*.whl)
           echo ::set-output name=arm_38::$(ls *cp38*.whl)
       - name: Save arm_37
@@ -42,7 +42,7 @@ jobs:
       - name: Build project
         id: build_project
         run: |
-          /build.sh arm64
+          ./build.sh arm64
           echo ::set-output name=arm64_37::$(ls *cp37*.whl)
           echo ::set-output name=arm64_38::$(ls *cp38*.whl)
       - name: Save arm64_37
