@@ -81,3 +81,10 @@ cd TimeSwipe.py
 python3 setup.py bdist_wheel
 ```
 
+## Release new version on master branch
+
+increment version in [setup.py](setup.py)
+```
+git tag v`python3 setup.py --version`
+git push origin v`python3 setup.py --version`
+```
