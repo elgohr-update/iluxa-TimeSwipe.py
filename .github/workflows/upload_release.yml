@@ -71,8 +71,8 @@ jobs:
       - name: Save src
         uses: actions/upload-artifact@v1
         with:
-          name: src
-          path: ./${{ steps.build_project.outputs.src }}
+          name: src_wheel
+          path: ./${{ steps.build_project.outputs.src_wheel }}
 
   release:
     name: Create Github Release
@@ -109,7 +109,7 @@ jobs:
     - name: Load src
       uses: actions/download-artifact@v1
       with:
-        name: src
+        name: src_wheel
 
     - name: Publish arm_37
       uses: csexton/release-asset-action@v2
@@ -138,7 +138,7 @@ jobs:
     - name: Publish src
       uses: csexton/release-asset-action@v2
       with:
-        pattern: "src/*"
+        pattern: "src_wheel/*"
         github-token: ${{ secrets.GITHUB_TOKEN }}
         release-url: ${{ steps.create_release.outputs.upload_url }}
 
@@ -171,5 +171,5 @@ jobs:
       with:
         user: __token__
         password: ${{ secrets.PYPI_TOKEN }}
-        packages_dir: src/
+        packages_dir: src_wheel/
 
